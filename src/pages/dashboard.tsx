@@ -5,7 +5,7 @@ import { Layout } from "../components/layout";
 const Dashboard = () => {
   return (
     <Layout>
-      <Box>Dashboard</Box>
+      <Box sx={{ backgroundColor: "salmon" }}>Dashboard</Box>
     </Layout>
   );
 };

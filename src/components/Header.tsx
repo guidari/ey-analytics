@@ -1,7 +1,10 @@
-import { Box } from "@mui/material";
+import { Box, useMediaQuery } from "@mui/material";
 import Image from "next/image";
+import HamburguerMenu from "./menu/HamburguerMenu";
 
 export default function Header() {
+  const matches = useMediaQuery("(max-width:899px)");
+
   return (
     <Box
       sx={{
@@ -12,7 +15,16 @@ export default function Header() {
         marginBottom: 5,
       }}
     >
-      <Image src="/images/ey-analytics.png" width={146} height={60} />
+      {matches && (
+        <>
+          <HamburguerMenu />
+          <Image src="/images/ey-analytics.png" width={102} height={42} />
+        </>
+      )}
+
+      {!matches && (
+        <Image src="/images/ey-analytics.png" width={146} height={60} />
+      )}
       <Box
         sx={{
           display: "flex",
@@ -27,8 +39,12 @@ export default function Header() {
             textAlign: "right",
           }}
         >
-          <span style={{ fontWeight: "bold" }}>Guilherme Datilio</span>
-          <span>guilhermedatilio@ey.com</span>
+          {!matches && (
+            <>
+              <span style={{ fontWeight: "bold" }}>Guilherme Datilio</span>
+              <span>guilhermedatilio@ey.com</span>
+            </>
+          )}
         </Box>
 
         <img
