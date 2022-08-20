@@ -1,6 +1,6 @@
 import { Box, Link } from "@mui/material";
 import DashboardIcon from "@mui/icons-material/Dashboard";
-import { INavLink } from "../interface/INavLink";
+import { INavLink } from "../../interface/INavLink";
 import { ActiveLink } from "./ActiveLink";
 
 export default function NavLink({ title, icon, href, ...rest }: INavLink) {

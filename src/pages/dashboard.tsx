@@ -82,7 +82,7 @@ const Dashboard = () => {
             <Box
               sx={{
                 backgroundColor: "var(--gray-700)",
-                borderRadius: 4,
+                borderRadius: 2,
                 paddingX: 2,
                 paddingY: 1,
                 margin: 2,
@@ -102,7 +102,7 @@ const Dashboard = () => {
             <Box
               sx={{
                 backgroundColor: "var(--gray-700)",
-                borderRadius: 4,
+                borderRadius: 2,
                 paddingX: 2,
                 paddingY: 1,
                 margin: 2,
@@ -122,7 +122,7 @@ const Dashboard = () => {
             <Box
               sx={{
                 backgroundColor: "var(--gray-700)",
-                borderRadius: 4,
+                borderRadius: 2,
                 paddingX: 2,
                 paddingY: 1,
                 margin: 2,
