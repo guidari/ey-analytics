@@ -2,7 +2,6 @@ import { Box, useMediaQuery } from "@mui/material";
 import NavLink from "./NavLink";
 import DashboardIcon from "@mui/icons-material/Dashboard";
 import GroupIcon from "@mui/icons-material/Group";
-import HamburguerMenu from "./HamburguerMenu";
 
 export default function Menu() {
   const matches = useMediaQuery("(max-width:899px)");
@@ -11,8 +10,8 @@ export default function Menu() {
     return (
       <Box>
         <span style={{ fontWeight: "bold", fontSize: 18 }}>Geral</span>
-        <NavLink title="Dashboard" icon={<DashboardIcon />} />
-        <NavLink title="Users" icon={<GroupIcon />} />
+        <NavLink title="Dashboard" icon={<DashboardIcon />} href="/dashboard" />
+        <NavLink title="Users" icon={<GroupIcon />} href="/users" />
       </Box>
     );
   }
@@ -21,8 +20,8 @@ export default function Menu() {
     return (
       <Box>
         <span style={{ fontWeight: "bold", fontSize: 18 }}>Geral</span>
-        <NavLink title="Dashboard" icon={<DashboardIcon />} />
-        <NavLink title="Users" icon={<GroupIcon />} />
+        <NavLink title="Dashboard" icon={<DashboardIcon />} href="/dashboard" />
+        <NavLink title="Users" icon={<GroupIcon />} href="/users" />
       </Box>
     );
   }

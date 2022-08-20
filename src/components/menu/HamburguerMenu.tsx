@@ -51,7 +51,7 @@ export default function HamburguerMenu() {
             <MenuIcon
               fontSize="large"
               sx={{
-                color: "var(--gray-900)",
+                color: "var(--yellow-1)",
               }}
             />
           </Button>
