@@ -22,6 +22,9 @@ import { db } from "../../config/firebase";
 import { IUser } from "../../interface/IUser";
 
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import LocationOnIcon from "@mui/icons-material/LocationOn";
+import EmailIcon from "@mui/icons-material/Email";
+import LocalPhoneIcon from "@mui/icons-material/LocalPhone";
 
 const UserInfo = () => {
   const matches = useMediaQuery("(min-width:900px)");
@@ -123,9 +126,18 @@ const UserInfo = () => {
                 <Stack sx={{ justifyContent: "space-between", lineHeight: 2 }}>
                   <h3>{user?.name}</h3>
                   <span>{user?.headline}</span>
-                  <span>🎃 {user?.location}</span>
-                  <span>🎃 {user?.email}</span>
-                  <span>🎃 {user?.phone}</span>
+                  <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
+                    <LocationOnIcon style={{ color: "var(--yellow-1)" }} />
+                    {user?.location}
+                  </Box>
+                  <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
+                    <EmailIcon style={{ color: "var(--yellow-1)" }} />{" "}
+                    {user?.email}
+                  </Box>
+                  <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
+                    <LocalPhoneIcon style={{ color: "var(--yellow-1)" }} />{" "}
+                    {user?.phone}
+                  </Box>
                 </Stack>
               </Stack>
             </Box>
@@ -195,7 +207,7 @@ const UserInfo = () => {
               <div
                 style={{
                   display: "grid",
-                  gridTemplateColumns: "1fr 1fr 1fr",
+                  gridTemplateColumns: matches ? "1fr 1fr 1fr" : "1fr 1fr",
                   gap: 10,
                 }}
               >

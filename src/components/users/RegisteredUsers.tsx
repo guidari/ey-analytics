@@ -85,6 +85,12 @@ export default function RegisteredUsers({ onRowClick }: any) {
               "& .MuiDataGrid-cell:hover": {
                 color: "var(--yellow-1)",
               },
+              "& .MuiTablePagination-displayedRows": {
+                color: "var(--white)",
+              },
+              "& .MuiSvgIcon-root": {
+                fill: "var(--white)",
+              },
             }}
             // getRowId={(row: any) => row.id}
             rows={rows}

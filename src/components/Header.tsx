@@ -51,7 +51,7 @@ export default function Header() {
           src="/images/user.jpg"
           width={48}
           height={48}
-          style={{ borderRadius: "50px" }}
+          style={{ borderRadius: "100%" }}
         />
       </Box>
     </Box>
