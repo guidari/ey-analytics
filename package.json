@@ -16,10 +16,12 @@
     "@mui/x-data-grid": "^5.15.3",
     "apexcharts": "^3.35.4",
     "axios": "^0.27.2",
+    "firebase": "^9.9.3",
     "next": "12.2.5",
     "react": "18.2.0",
     "react-apexcharts": "^1.4.0",
-    "react-dom": "18.2.0"
+    "react-dom": "18.2.0",
+    "react-firebase-hooks": "^5.0.3"
   },
   "devDependencies": {
     "@types/node": "18.7.6",

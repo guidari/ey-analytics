@@ -1,39 +1,62 @@
-import { Box, CircularProgress } from "@mui/material";
-import { DataGrid, GridColDef } from "@mui/x-data-grid";
+import { Box, Button, CircularProgress } from "@mui/material";
+import { DataGrid, GridColDef, GridRenderCellParams } from "@mui/x-data-grid";
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { collection, getDocs } from "firebase/firestore";
+import { SetStateAction, useEffect, useState } from "react";
+import { db } from "../../config/firebase";
 
 export default function RegisteredUsers({ onRowClick }: any) {
-  const [users, setUsers] = useState();
+  const [users, setUsers] = useState<any[]>([]);
 
   useEffect(() => {
-    axios
-      .get(
-        `https://62e3f5c5c6b56b45117f9631.mockapi.io/api/users
-        `
-      )
-      .then((response: any) => {
-        setUsers(response.data);
-      });
+    getUsers();
   }, []);
+
+  async function getUsers() {
+    const querySnapshot = await getDocs(collection(db, "users"));
+
+    querySnapshot.forEach((doc) => {
+      const document: SetStateAction<any[]> = [];
+
+      querySnapshot.forEach((doc) => {
+        document.push({
+          ...doc.data(),
+        });
+      });
+
+      setUsers(document);
+    });
+  }
 
   const columns: GridColDef[] = [
     {
       field: "name",
       headerName: "Name",
-      width: 286,
+      width: 200,
       headerClassName: "header-style",
     },
     {
-      field: "email",
-      headerName: "Email",
-      width: 286,
+      field: "headline",
+      headerName: "Headline",
+      width: 200,
       headerClassName: "header-style",
     },
     {
-      field: "active",
-      headerName: "Status",
-      width: 286,
+      field: "challenges",
+      headerName: "Completed Challenges",
+      width: 200,
+      headerClassName: "header-style",
+    },
+    {
+      field: "hours",
+      headerName: "Study hours",
+      width: 153,
+      headerClassName: "header-style",
+    },
+    {
+      field: "completedCourses",
+      headerName: "Completed Courses",
+      width: 200,
       headerClassName: "header-style",
     },
   ];
@@ -58,7 +81,11 @@ export default function RegisteredUsers({ onRowClick }: any) {
               cursor: "pointer",
               backgroundColor: "var(--gray-700)",
               color: "var(--white)",
+              "& .MuiDataGrid-cell:hover": {
+                color: "var(--yellow-1)",
+              },
             }}
+            // getRowId={(row: any) => row.id}
             rows={rows}
             columns={columns}
             pageSize={10}
