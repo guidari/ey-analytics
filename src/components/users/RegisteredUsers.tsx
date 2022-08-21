@@ -35,9 +35,10 @@ export default function RegisteredUsers({ onRowClick }: any) {
       width: 200,
       headerClassName: "header-style",
     },
+
     {
-      field: "headline",
-      headerName: "Headline",
+      field: "skills",
+      headerName: "Skills",
       width: 200,
       headerClassName: "header-style",
     },
