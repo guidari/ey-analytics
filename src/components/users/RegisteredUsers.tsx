@@ -48,7 +48,7 @@ export default function RegisteredUsers({ onRowClick }: any) {
             height: 635,
             width: "100%",
             "& .header-style": {
-              backgroundColor: "var(--gray-700)",
+              backgroundColor: "var(--gray-100)",
               color: "var(--white)",
             },
           }}
@@ -68,7 +68,7 @@ export default function RegisteredUsers({ onRowClick }: any) {
         </Box>
       ) : (
         <Box sx={{ display: "flex", justifyContent: "center" }}>
-          <CircularProgress />
+          <CircularProgress sx={{ color: "var(--yellow-1)" }} />
         </Box>
       )}
     </Box>
