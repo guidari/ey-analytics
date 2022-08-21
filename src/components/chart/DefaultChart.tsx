@@ -1,4 +1,4 @@
-import { Box } from "@mui/material";
+import { Box, useMediaQuery } from "@mui/material";
 import { ApexOptions } from "apexcharts";
 import dynamic from "next/dynamic";
 
@@ -8,6 +8,8 @@ interface IDefaultChart {
 }
 
 export default function DefaultChart({ title, series }: IDefaultChart) {
+  const matches = useMediaQuery("(min-width:900px)");
+
   const Chart = dynamic(() => import("react-apexcharts"), {
     ssr: false,
   });
@@ -77,9 +79,10 @@ export default function DefaultChart({ title, series }: IDefaultChart) {
       sx={{
         backgroundColor: "var(--gray-700)",
         borderRadius: 2,
-        paddingX: 2,
+        paddingX: matches ? 2 : 0,
         paddingY: 1,
-        margin: 2,
+        margin: matches ? 2 : 0,
+        marginTop: 2,
       }}
     >
       <h3 style={{ paddingLeft: 20, marginTop: 20, marginBottom: 20 }}>

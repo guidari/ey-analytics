@@ -9,7 +9,7 @@ const Dashboard = () => {
 
   return (
     <Layout>
-      <Box sx={{ flexGrow: 1 }}>
+      <Box sx={{ flexGrow: 1, margin: 2 }}>
         <Grid
           container
           spacing={{ xs: 2, md: 3 }}
@@ -23,6 +23,9 @@ const Dashboard = () => {
           </Grid>
           <Grid xs={12} sm={12} md={6}>
             <DefaultChart title="Course hours" series={series} />
+          </Grid>
+          <Grid xs={12} sm={12} md={6}>
+            <DefaultChart title="User growth" series={userGrowth} />
           </Grid>
         </Grid>
       </Box>
