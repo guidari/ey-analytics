@@ -1,5 +1,5 @@
 import FactCheckIcon from "@mui/icons-material/FactCheck";
-import { Box, useMediaQuery } from "@mui/material";
+import { Box, Grid, useMediaQuery } from "@mui/material";
 import { Stack } from "@mui/system";
 import {
   collection,
@@ -22,9 +22,10 @@ import { db } from "../../config/firebase";
 import { IUser } from "../../interface/IUser";
 
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
-import LocationOnIcon from "@mui/icons-material/LocationOn";
 import EmailIcon from "@mui/icons-material/Email";
 import LocalPhoneIcon from "@mui/icons-material/LocalPhone";
+import LocationOnIcon from "@mui/icons-material/LocationOn";
+import MyButton from "../../components/myButton";
 
 const UserInfo = () => {
   const matches = useMediaQuery("(min-width:900px)");
@@ -59,8 +60,9 @@ const UserInfo = () => {
 
   const series = [{ name: "series1", data: [31, 120, 10, 28, 56, 19, 45] }];
 
-  console.log("user", user);
-
+  const sendNotification = () => {
+    alert("oi");
+  };
   return (
     <Layout>
       <>
@@ -90,7 +92,6 @@ const UserInfo = () => {
             </Box>
           </Link>
         </Box>
-
         <Box
           sx={{
             backgroundColor: "var(--gray-700)",
@@ -155,7 +156,6 @@ const UserInfo = () => {
               />
             </Box>
           </Stack>
-
           {/* MY PROGRESS */}
           <Stack
             direction={{ xs: "column", sm: "row", md: "row" }}
@@ -183,9 +183,7 @@ const UserInfo = () => {
               statusNumber={user?.challenges}
             />
           </Stack>
-
           {/* SKILLS */}
-
           <Stack
             direction={{ xs: "column", sm: "column", md: "row" }}
             spacing={{ xs: 1, sm: 2, md: 4 }}
@@ -231,7 +229,6 @@ const UserInfo = () => {
               })}
             </Box>
           </Stack>
-
           <Stack
             direction={{ xs: "column", sm: "column", md: "row" }}
             spacing={{ xs: 1, sm: 2, md: 4 }}
@@ -261,8 +258,46 @@ const UserInfo = () => {
               ></iframe>
             </Box>
           </Stack>
-
           <DefaultChart title="Hours" series={series} />
+          <Box
+            sx={{
+              backgroundColor: "var(--gray-100)",
+              paddingX: 3,
+              paddingY: 3,
+              borderRadius: 2,
+            }}
+          >
+            <p>
+              This profile fits an open opportunity? Follow these steps to get
+              in touch with him/her:
+            </p>
+
+            <Grid sx={{ marginTop: 2 }} container columns={{ xs: 6, md: 12 }}>
+              <Grid sx={{ paddingRight: 2 }} item xs={6}>
+                <strong>Step 1</strong>
+                <p style={{ marginTop: 20, marginBottom: 20 }}>
+                  Send it an email saying that you liked his/her profile and
+                  insert a link to enroll to that opportunity.
+                </p>
+
+                <MyButton
+                  link={`https://mail.google.com/mail/?view=cm&fs=1&to=${user?.email}`}
+                  title="Send email"
+                />
+              </Grid>
+              <Grid sx={{ paddingRight: 2 }} item xs={6}>
+                <strong>Step 2</strong>
+                <p style={{ marginTop: 20, marginBottom: 20 }}>
+                  Send a notification on the EY Platform to let him/her know
+                  that we have an eye on him/her.
+                </p>
+                <MyButton
+                  title="Send notification"
+                  onClick={sendNotification}
+                />
+              </Grid>
+            </Grid>
+          </Box>
         </Box>
       </>
     </Layout>
