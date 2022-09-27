@@ -2,10 +2,13 @@ import FactCheckIcon from "@mui/icons-material/FactCheck";
 import { Box, Grid, useMediaQuery } from "@mui/material";
 import { Stack } from "@mui/system";
 import {
+  arrayUnion,
   collection,
+  doc,
   DocumentData,
   getDocs,
   query,
+  updateDoc,
   where,
 } from "firebase/firestore";
 import Link from "next/link";
@@ -54,6 +57,28 @@ const UserInfo = () => {
     }
   };
 
+  function formatDate(date: any) {
+    let d = new Date(date),
+      month = "" + (d.getMonth() + 1),
+      day = "" + d.getDate(),
+      year = d.getFullYear();
+
+    if (month.length < 2) month = "0" + month;
+    if (day.length < 2) day = "0" + day;
+
+    return [year, month, day].join("-");
+  }
+
+  const date = formatDate(Date.now());
+  console.log("date", date);
+
+  const notification = {
+    id: Date.now(),
+    title: "Job oportunity",
+    description: "You recevied an email, go check it out!",
+    date: date,
+  };
+
   useEffect(() => {
     fetchUserName();
   }, []);
@@ -61,7 +86,10 @@ const UserInfo = () => {
   const series = [{ name: "series1", data: [31, 120, 10, 28, 56, 19, 45] }];
 
   const sendNotification = () => {
-    alert("oi");
+    alert("Perfect! Your notification was sent!");
+    updateDoc(doc(db, `users/${id}`), {
+      notifications: arrayUnion(notification),
+    });
   };
   return (
     <Layout>
