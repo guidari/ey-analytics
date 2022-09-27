@@ -69,14 +69,11 @@ const UserInfo = () => {
     return [year, month, day].join("-");
   }
 
-  const date = formatDate(Date.now());
-  console.log("date", date);
-
   const notification = {
     id: Date.now(),
     title: "Job oportunity",
     description: "You recevied an email, go check it out!",
-    date: date,
+    date: formatDate(Date.now()),
   };
 
   useEffect(() => {
