@@ -275,12 +275,23 @@ const UserInfo = () => {
             {/* INTRODUCTION VIDEO */}
             <Box sx={matches ? { width: "50%" } : { width: "100%" }}>
               <h2 style={{ marginTop: 20 }}>Introduction video</h2>
-              <iframe
+              {/* <iframe
                 width="100%"
                 height="250"
-                src="https://www.youtube.com/embed/U4rEIeDBigw"
+                // src="https://www.youtube.com/embed/U4rEIeDBigw"
+                // src={user?.video}
                 style={{ marginTop: 20 }}
-              ></iframe>
+              >
+                <video src="{user?.video}"></video>
+              </iframe> */}
+              <video
+                width="100%"
+                height="250"
+                style={{ marginTop: 20 }}
+                controls
+              >
+                <source src={`${user?.video}?noCache=${Math.random()}`} />
+              </video>
             </Box>
           </Stack>
           <DefaultChart title="Hours" series={series} />

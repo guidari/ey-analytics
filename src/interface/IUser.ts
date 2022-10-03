@@ -16,6 +16,7 @@ export interface IUser {
   hours: number;
   challenges: number;
   coursesInProgress: number;
+  video: string;
   progress: {
     completedCourses: number;
     hours: number;
@@ -44,6 +45,7 @@ export interface IUserRow {
   hours: number;
   challenges: number;
   coursesInProgress: number;
+  video: string;
   progress: {
     completedCourses: number;
     hours: number;
