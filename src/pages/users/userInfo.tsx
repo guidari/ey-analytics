@@ -1,5 +1,5 @@
 import FactCheckIcon from "@mui/icons-material/FactCheck";
-import { Box, Grid, useMediaQuery } from "@mui/material";
+import { Box, Button, Grid, useMediaQuery } from "@mui/material";
 import { Stack } from "@mui/system";
 import {
   arrayUnion,
@@ -88,6 +88,19 @@ const UserInfo = () => {
       notifications: arrayUnion(notification),
     });
   };
+
+  const watchVideo = () => {
+    const video = document.querySelector("#video") as HTMLVideoElement;
+    const source = document.querySelector("#source") as HTMLSourceElement;
+    const buttonStart = document.querySelector(
+      "#buttonStart"
+    ) as HTMLButtonElement;
+    buttonStart.style.display = "none";
+    source.src = user?.video;
+    video.load();
+    video.play();
+  };
+
   return (
     <Layout>
       <>
@@ -284,14 +297,32 @@ const UserInfo = () => {
               >
                 <video src="{user?.video}"></video>
               </iframe> */}
-              <video
-                width="100%"
-                height="250"
-                style={{ marginTop: 20 }}
-                controls
-              >
-                <source src={`${user?.video}?noCache=${Math.random()}`} />
-              </video>
+              <Box sx={{ position: "relative" }}>
+                <Button
+                  id="buttonStart"
+                  variant="text"
+                  type="button"
+                  onClick={watchVideo}
+                  sx={{
+                    position: "absolute",
+                    width: "100%",
+                    marginTop: 2.3,
+                    height: "250px",
+                    zIndex: 9999,
+                  }}
+                >
+                  Click here to start the video
+                </Button>
+                <video
+                  width="100%"
+                  height="250"
+                  style={{ marginTop: 20, zIndex: 9 }}
+                  id="video"
+                  controls
+                >
+                  <source id="source" src={user?.video} />
+                </video>
+              </Box>
             </Box>
           </Stack>
           <DefaultChart title="Hours" series={series} />
