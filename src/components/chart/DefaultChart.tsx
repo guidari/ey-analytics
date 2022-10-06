@@ -1,6 +1,7 @@
-import { Box, useMediaQuery } from "@mui/material";
+import { useMediaQuery } from "@mui/material";
 import { ApexOptions } from "apexcharts";
 import dynamic from "next/dynamic";
+import BoxContent from "../boxContent";
 
 interface IDefaultChart {
   title: string;
@@ -75,21 +76,8 @@ export default function DefaultChart({ title, series }: IDefaultChart) {
   // const series = [{ name: "series1", data: [31, 120, 10, 28, 56, 19, 45] }];
 
   return (
-    <Box
-      sx={{
-        backgroundColor: "var(--gray-700)",
-        borderRadius: 2,
-        paddingX: matches ? 2 : 0,
-        paddingY: 1,
-        margin: matches ? 2 : 0,
-        marginTop: 2,
-      }}
-    >
-      <h3 style={{ paddingLeft: 20, marginTop: 20, marginBottom: 20 }}>
-        {title}
-      </h3>
-
+    <BoxContent title={title}>
       <Chart type="area" options={options} series={series} height={200} />
-    </Box>
+    </BoxContent>
   );
 }
