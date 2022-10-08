@@ -97,7 +97,7 @@ export default function AppliedJobs({ id }: any) {
               <Box sx={{ height: 50 }}></Box>
               <Box sx={{ position: "absolute", bottom: 20, left: 20 }}>
                 <MyButton
-                  link={`${process.env.EY_URL}jobs/jobDescription?id=${id}`}
+                  link={`${process.env.NEXT_PUBLIC_EY_WEBSITE}jobs/jobDescription?id=${id}`}
                   title="See role"
                 />
               </Box>
