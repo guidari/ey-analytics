@@ -60,8 +60,6 @@ export default function AppliedJobs({ id }: any) {
         borderRadius: 2,
       }}
     >
-      <h2 style={{ marginBottom: 20 }}>Applied Jobs</h2>
-
       <Grid
         container
         spacing={{ xs: 2, md: 3 }}

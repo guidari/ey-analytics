@@ -328,7 +328,11 @@ const UserInfo = () => {
           </Stack>
 
           <DefaultChart title="Hours" series={series} />
+          <h2 style={{ marginBottom: 10 }}>Applied Jobs</h2>
+
           <AppliedJobs id={id} />
+
+          <h2 style={{ marginBottom: 10 }}>Get in touch!</h2>
 
           <Box
             sx={{
