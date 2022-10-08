@@ -29,6 +29,7 @@ import EmailIcon from "@mui/icons-material/Email";
 import LocalPhoneIcon from "@mui/icons-material/LocalPhone";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import MyButton from "../../components/myButton";
+import AppliedJobs from "../../components/users/AppliedJobs";
 
 const UserInfo = () => {
   const matches = useMediaQuery("(min-width:900px)");
@@ -325,7 +326,10 @@ const UserInfo = () => {
               </Box>
             </Box>
           </Stack>
+
           <DefaultChart title="Hours" series={series} />
+          <AppliedJobs id={id} />
+
           <Box
             sx={{
               backgroundColor: "var(--gray-100)",

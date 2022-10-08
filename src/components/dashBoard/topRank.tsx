@@ -20,7 +20,6 @@ export default function TopRank() {
       allUsers.push(doc.data());
     });
     setUsers(allUsers);
-    console.log("allUsers", allUsers);
   };
 
   useEffect(() => {

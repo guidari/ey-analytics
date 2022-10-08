@@ -5,7 +5,7 @@ import DefaultChart from "../components/chart/DefaultChart";
 import { useState } from "react";
 import TopRank from "../components/dashBoard/topRank";
 import { Layout } from "../components/layout";
-import { IUserRow } from "../interface/IUser";
+import TopJobs from "../components/dashBoard/topJobs";
 
 const Dashboard = () => {
   const matches = useMediaQuery("(min-width:900px)");
@@ -50,9 +50,7 @@ const Dashboard = () => {
 
           <Grid xs={12} sm={12} md={6}>
             <BoxContent title="Most applied jobs">
-              {users.map((user: IUserRow) => {
-                return <p>{user.name}</p>;
-              })}
+              <TopJobs />
             </BoxContent>
           </Grid>
         </Grid>
