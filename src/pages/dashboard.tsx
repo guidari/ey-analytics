@@ -3,9 +3,9 @@ import BoxContent from "../components/boxContent";
 import DefaultChart from "../components/chart/DefaultChart";
 
 import { useState } from "react";
+import TopJobs from "../components/dashBoard/topJobs";
 import TopRank from "../components/dashBoard/topRank";
 import { Layout } from "../components/layout";
-import TopJobs from "../components/dashBoard/topJobs";
 
 const Dashboard = () => {
   const matches = useMediaQuery("(min-width:900px)");
@@ -30,7 +30,7 @@ const Dashboard = () => {
             <DefaultChart title="User growth" series={userGrowth} />
           </Grid>
           <Grid xs={12} sm={12} md={6}>
-            <DefaultChart title="Course hours" series={series} />
+            <DefaultChart title="Course study hours" series={series} />
           </Grid>
           <Grid xs={12} sm={12} md={6}>
             <DefaultChart title="Submitted challenges" series={series} />

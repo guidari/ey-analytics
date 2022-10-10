@@ -34,7 +34,6 @@ export default function AppliedJobs({ id }: any) {
 
       for (let index = 0; index < jobsId.length; index++) {
         const element = jobsId[index];
-        console.log("element", element);
         const q = query(collection(db, "jobs"), where("id", "==", element));
         const doc = await getDocs(q);
         const data = doc.docs[0].data();
@@ -78,6 +77,7 @@ export default function AppliedJobs({ id }: any) {
                 paddingBottom: 3,
                 position: "relative",
               }}
+              key={job.id}
             >
               <Box>
                 <span style={{ fontWeight: "bold" }}>Role: </span>

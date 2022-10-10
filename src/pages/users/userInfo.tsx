@@ -30,6 +30,7 @@ import LocalPhoneIcon from "@mui/icons-material/LocalPhone";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import MyButton from "../../components/myButton";
 import AppliedJobs from "../../components/users/AppliedJobs";
+import CompletedCourses from "../../components/users/CompletedCourses";
 
 const UserInfo = () => {
   const matches = useMediaQuery("(min-width:900px)");
@@ -327,10 +328,13 @@ const UserInfo = () => {
             </Box>
           </Stack>
 
-          <DefaultChart title="Hours" series={series} />
+          <DefaultChart title="Study hours" series={series} />
           <h2 style={{ marginBottom: 10 }}>Applied Jobs</h2>
 
           <AppliedJobs id={id} />
+
+          <h2 style={{ marginBottom: 10 }}>Completed Courses</h2>
+          <CompletedCourses id={id} />
 
           <h2 style={{ marginBottom: 10 }}>Get in touch!</h2>
 

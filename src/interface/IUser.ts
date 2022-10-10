@@ -12,6 +12,7 @@ export interface IUser {
   enrolledCourses: [];
   submitedChallenges: [];
   skills: [];
+  arrayCompletedCourses: [];
   completedCourses: number;
   hours: number;
   challenges: number;
@@ -41,6 +42,7 @@ export interface IUserRow {
   enrolledCourses: [];
   submitedChallenges: [];
   skills: [];
+  arrayCompletedCourses: [];
   completedCourses: number;
   hours: number;
   challenges: number;
