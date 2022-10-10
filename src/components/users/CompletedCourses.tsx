@@ -6,7 +6,6 @@ import { db } from "../../config/firebase";
 import MyButton from "../myButton";
 
 export default function CompletedCourses({ id }: any) {
-  const [myCourses, setMyCourses] = useState<string[]>([]);
   // const [user, setUser] = useState<IUserRow | DocumentData>();
   const [completedCourses, setCompletedCourses] = useState<string[]>([]);
 
@@ -26,11 +25,10 @@ export default function CompletedCourses({ id }: any) {
   // };
 
   useEffect(() => {
-    setMyCourses([]);
-    setCompletedCourses([]);
-
     const getUser = async () => {
       try {
+        setCompletedCourses([]);
+
         let userId;
         if (!id) {
           userId = localStorage.getItem("userId");
@@ -42,40 +40,28 @@ export default function CompletedCourses({ id }: any) {
         const user = doc.docs[0].data();
 
         let tokenHeaders;
+        let completed: any = [];
 
-        user?.enrolledCourses.map((item: string) => {
+        user?.arrayCompletedCourses.map(async (item: any) => {
           tokenHeaders = {
             headers: {
               id: item,
             },
           };
-          axios
+          await axios
             .get(process.env.NEXT_PUBLIC_NODE_API + "mycourses", tokenHeaders)
             .then(function (response) {
-              setMyCourses((current: string[]) => [
+              console.log("response.data", response.data);
+              completed.push(response.data);
+              setCompletedCourses((current: string[]) => [
                 ...current,
                 ...[response.data],
               ]);
+              console.log("completedCourses", completedCourses);
             });
         });
 
-        let completed: any = [];
-
-        user?.arrayCompletedCourses.forEach((item: any) => {
-          tokenHeaders = {
-            headers: {
-              id: item,
-            },
-          };
-          axios
-            .get(process.env.NEXT_PUBLIC_NODE_API + "mycourses", tokenHeaders)
-            .then(function (response) {
-              completed.push(response.data);
-            });
-        });
-
-        console.log("completed", completed);
-        setCompletedCourses(completed);
+        // setCompletedCourses(completed);
       } catch (err) {
         console.log("User not authenticated");
       }
@@ -84,7 +70,7 @@ export default function CompletedCourses({ id }: any) {
     getUser();
   }, []);
 
-  console.log("myCourses", myCourses, "completedCourses", completedCourses);
+  // console.log("completedCourses", completedCourses);
 
   return (
     <Box
@@ -95,6 +81,7 @@ export default function CompletedCourses({ id }: any) {
         borderRadius: 2,
       }}
     >
+      {!completedCourses && <Box>No courses completed</Box>}
       <Grid
         container
         spacing={{ xs: 2, md: 3 }}
