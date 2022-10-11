@@ -14,7 +14,6 @@ import {
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
-import DefaultChart from "../../components/chart/DefaultChart";
 
 import { Layout } from "../../components/layout";
 import ButtonSocial from "../../components/users/ButtonSocial";
@@ -31,6 +30,7 @@ import LocationOnIcon from "@mui/icons-material/LocationOn";
 import MyButton from "../../components/myButton";
 import AppliedJobs from "../../components/users/AppliedJobs";
 import CompletedCourses from "../../components/users/CompletedCourses";
+import UserProgress from "../../components/users/UserProgress";
 
 const UserInfo = () => {
   const matches = useMediaQuery("(min-width:900px)");
@@ -81,8 +81,6 @@ const UserInfo = () => {
   useEffect(() => {
     fetchUserName();
   }, []);
-
-  const series = [{ name: "series1", data: [31, 120, 10, 28, 56, 19, 45] }];
 
   const sendNotification = () => {
     alert("Perfect! Your notification was sent!");
@@ -328,7 +326,9 @@ const UserInfo = () => {
             </Box>
           </Stack>
 
-          <DefaultChart title="Study hours" series={series} />
+          <h2 style={{ marginBottom: 10 }}>User Progress</h2>
+          <UserProgress id={id} />
+
           <h2 style={{ marginBottom: 10 }}>Applied Jobs</h2>
 
           <AppliedJobs id={id} />

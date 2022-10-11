@@ -1,4 +1,5 @@
-import { Box } from "@mui/material";
+import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
+import { Box, IconButton } from "@mui/material";
 
 import { collection, getDocs, limit, orderBy, query } from "firebase/firestore";
 import { useEffect, useState } from "react";
@@ -42,6 +43,7 @@ export default function TopJobs() {
               paddingX: 2,
               borderRadius: 2,
               backgroundColor: "var(--gray-100)",
+              position: "relative",
             }}
           >
             <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
@@ -57,6 +59,16 @@ export default function TopJobs() {
             <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
               <span style={{ fontWeight: "bold" }}>ID: </span>
               {job.id}
+            </Box>
+            <Box sx={{ height: 20 }}></Box>
+            <Box sx={{ position: "absolute", bottom: 5, right: 10 }}>
+              <IconButton
+                sx={{ color: "var(--yellow-1)" }}
+                target="_blank"
+                href={`${process.env.NEXT_PUBLIC_EY_WEBSITE}jobs/jobDescription?id=${job.id}`}
+              >
+                <ArrowForwardIcon />
+              </IconButton>
             </Box>
           </Box>
         );

@@ -41,8 +41,8 @@ export default function Header() {
         >
           {!matches && (
             <>
-              <span style={{ fontWeight: "bold" }}>Guilherme Datilio</span>
-              <span>guilhermedatilio@ey.com</span>
+              <span style={{ fontWeight: "bold" }}>João Paulo</span>
+              <span>Administrador</span>
             </>
           )}
         </Box>
