@@ -73,7 +73,7 @@ const UserInfo = () => {
 
   const notification = {
     id: Date.now(),
-    title: "Job oportunity",
+    title: "Job opportunity",
     description: "You recevied an email, go check it out!",
     date: formatDate(Date.now()),
   };
