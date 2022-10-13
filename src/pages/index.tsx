@@ -1,8 +1,8 @@
 import { Box, Container } from "@mui/material";
 
-import Link from "next/link";
-import Image from "next/image";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
+import Image from "next/image";
+import Link from "next/link";
 
 const Home = () => {
   return (
@@ -18,9 +18,7 @@ const Home = () => {
           borderRadius: 2,
         }}
       >
-        <h1 style={{ textAlign: "center" }}>
-          Find the best match for our company
-        </h1>
+        <h1 style={{ textAlign: "center" }}>Find the best match for EY</h1>
         <Image
           src="/images/undraw_analytics.svg"
           width={300}
@@ -49,7 +47,7 @@ const Home = () => {
                 cursor: "pointer",
               }}
             >
-              <span>Go to Dashboard</span>
+              <span>Go to EY Analytics</span>
               <ArrowForwardIcon />
             </Box>
           </Link>
