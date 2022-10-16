@@ -41,7 +41,7 @@ export default function Header() {
         >
           {!matches && (
             <>
-              <span style={{ fontWeight: "bold" }}>João Paulo</span>
+              <span style={{ fontWeight: "bold" }}>Guilherme Datilio</span>
               <span>Administrador</span>
             </>
           )}

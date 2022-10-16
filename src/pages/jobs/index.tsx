@@ -1,31 +1,34 @@
-import { Box, Grid, TextareaAutosize, TextField } from "@mui/material";
-import { addDoc, collection, doc, updateDoc } from "firebase/firestore";
+import { Box, Grid } from "@mui/material";
+import { collection, getDocs, query } from "firebase/firestore";
+import Link from "next/link";
+import { useEffect, useState } from "react";
+import JobBox from "../../components/jobs/jobBox";
 import { Layout } from "../../components/layout";
 import MyButton from "../../components/myButton";
 import { db } from "../../config/firebase";
+import { IJobBox } from "../../interface/IJobBox";
 
 export default function Jobs() {
-  const registerJob = async (e: any) => {
-    e.preventDefault();
-    const title = (document.getElementById("title") as HTMLInputElement).value;
-    const description = (
-      document.getElementById("description") as HTMLInputElement
-    ).value;
-    const location = (document.getElementById("location") as HTMLInputElement)
-      .value;
+  const [jobs, setJobs] = useState<IJobBox[]>([]);
 
-    // Add a new document with a generated id.
-    const docRef = await addDoc(collection(db, "jobs"), {
-      title,
-      description,
-      location,
-    });
-    console.log("Document written with ID: ", docRef.id);
+  const getJobs = async () => {
+    const docRef = collection(db, "jobs");
 
-    updateDoc(doc(db, `jobs/${docRef.id}`), {
-      id: docRef.id,
+    const q = query(docRef);
+
+    const querySnapshot = await getDocs(q);
+    let allJobs: any = [];
+    querySnapshot.forEach((doc) => {
+      allJobs.push(doc.data());
     });
+    setJobs(allJobs);
+    console.log("allJobs", allJobs);
   };
+
+  useEffect(() => {
+    getJobs();
+  }, []);
+
   return (
     <Layout>
       <Box
@@ -36,118 +39,32 @@ export default function Jobs() {
           borderRadius: 2,
         }}
       >
-        <h2>Regsiter a job role</h2>
-
-        <Grid
-          sx={{ marginTop: 2 }}
-          component="form"
-          onSubmit={registerJob}
-          container
-          spacing={2}
-          columns={{ xs: 6, sm: 8, md: 12 }}
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "space-between",
+            marginBottom: 2,
+          }}
         >
-          <Grid item xs={6}>
-            <TextField
-              required
-              id="title"
-              label="Job title"
-              sx={{
-                backgroundColor: "var(--gray-300)",
-                width: "100%",
-                color: "white",
-                "& label.Mui-focused": {
-                  color: "white",
-                },
-                "& label": {
-                  color: "black",
-                },
-                "& .MuiOutlinedInput-root": {
-                  "& fieldset": {
-                    borderColor: "var(--gray-100)",
-                  },
-                  "&:hover fieldset": {
-                    borderColor: "white",
-                  },
-                  "&.Mui-focused fieldset": {
-                    borderColor: "yellow",
-                  },
-                },
-              }}
-            />
-          </Grid>
-          <Grid item xs={6}>
-            <TextField
-              required
-              id="location"
-              label="Location"
-              sx={{
-                backgroundColor: "var(--gray-300)",
-                width: "100%",
-                color: "white",
-                "& label.Mui-focused": {
-                  color: "white",
-                },
-                "& label": {
-                  color: "black",
-                },
-                "& .MuiOutlinedInput-root": {
-                  "& fieldset": {
-                    borderColor: "var(--gray-100)",
-                  },
-                  "&:hover fieldset": {
-                    borderColor: "white",
-                  },
-                  "&.Mui-focused fieldset": {
-                    borderColor: "yellow",
-                  },
-                },
-              }}
-            />
-          </Grid>
-          <Grid item xs={12}>
-            <TextField
-              required
-              id="description"
-              label="Description"
-              sx={{
-                backgroundColor: "var(--gray-300)",
-                width: "100%",
-                color: "white",
-                "& label.Mui-focused": {
-                  color: "white",
-                },
-                "& label": {
-                  color: "black",
-                },
-                "& .MuiOutlinedInput-root": {
-                  "& fieldset": {
-                    borderColor: "var(--gray-100)",
-                  },
-                  "&:hover fieldset": {
-                    borderColor: "white",
-                  },
-                  "&.Mui-focused fieldset": {
-                    borderColor: "yellow",
-                  },
-                },
-              }}
-            />
-          </Grid>
-          <Grid item xs={12}>
-            <TextareaAutosize
-              aria-label="minimum height"
-              minRows={3}
-              placeholder="Write a detailed description"
-              style={{
-                width: "100%",
-                height: "150px",
-                backgroundColor: "var(--gray-300)",
-              }}
-            />
-          </Grid>
-          <Grid item xs={12}>
-            <MyButton title="Register" onClick={registerJob} />
-          </Grid>
+          <h2>Jobs</h2>
+
+          <Link href="jobs/registerNewJob">
+            <MyButton title="Add new job" />
+          </Link>
+        </Box>
+        <Grid container columns={{ xs: 4, sm: 8, md: 12 }} spacing={2}>
+          {jobs.map((job) => {
+            return (
+              <Grid item xs={4}>
+                <JobBox
+                  id={job.id}
+                  title={job.title}
+                  description={job.description}
+                  location={job.location}
+                />
+              </Grid>
+            );
+          })}
         </Grid>
       </Box>
     </Layout>

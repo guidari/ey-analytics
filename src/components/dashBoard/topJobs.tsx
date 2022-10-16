@@ -12,7 +12,7 @@ export default function TopJobs() {
   const getJobs = async () => {
     const docRef = collection(db, "jobs");
 
-    const q = query(docRef, orderBy("applications", "desc"), limit(5));
+    const q = query(docRef, orderBy("applications", "desc"), limit(3));
 
     const querySnapshot = await getDocs(q);
     let allJobs: any = [];

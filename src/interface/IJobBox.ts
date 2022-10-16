@@ -1,8 +1,7 @@
-export interface IJob {
+export interface IJobBox {
   id: string;
   title: string;
   description: string;
   location: string;
-  users: [];
-  applications: number;
+  applications?: number;
 }

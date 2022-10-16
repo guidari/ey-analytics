@@ -1,32 +1,7 @@
 import { Box, CircularProgress } from "@mui/material";
 import { DataGrid, GridColDef } from "@mui/x-data-grid";
-import { collection, getDocs } from "firebase/firestore";
-import { SetStateAction, useEffect, useState } from "react";
-import { db } from "../../config/firebase";
 
-export default function RegisteredUsers({ onRowClick }: any) {
-  const [users, setUsers] = useState<any[]>([]);
-
-  useEffect(() => {
-    getUsers();
-  }, []);
-
-  async function getUsers() {
-    const querySnapshot = await getDocs(collection(db, "users"));
-
-    querySnapshot.forEach((doc) => {
-      const document: SetStateAction<any[]> = [];
-
-      querySnapshot.forEach((doc) => {
-        document.push({
-          ...doc.data(),
-        });
-      });
-
-      setUsers(document);
-    });
-  }
-
+export default function AppliedUsers({ onRowClick, users }: any) {
   const columns: GridColDef[] = [
     {
       field: "name",
@@ -68,7 +43,6 @@ export default function RegisteredUsers({ onRowClick }: any) {
       {users ? (
         <Box
           sx={{
-            height: 635,
             width: "100%",
             "& .header-style": {
               backgroundColor: "var(--gray-100)",
@@ -95,8 +69,9 @@ export default function RegisteredUsers({ onRowClick }: any) {
             rows={rows}
             columns={columns}
             pageSize={10}
-            rowsPerPageOptions={[10]}
+            rowsPerPageOptions={[25, 50, 75, 100]}
             onRowClick={onRowClick}
+            autoHeight
           />
         </Box>
       ) : (
