@@ -12,7 +12,7 @@ export default function TopRank() {
   const getUsers = async () => {
     const docRef = collection(db, "users");
 
-    const q = query(docRef, orderBy("progress.challenges", "desc"), limit(3));
+    const q = query(docRef, orderBy("userLevel", "desc"), limit(3));
 
     const querySnapshot = await getDocs(q);
     let allUsers: any = [];
@@ -51,7 +51,7 @@ export default function TopRank() {
     >
       <Box sx={{ width: 80 }}>
         <p style={{ textAlign: "center", padding: 0.5 }}>
-          <Button onClick={userInfo} sx={{ color: "white" }}>
+          <Button onClick={userInfo} sx={{ color: "white" }} id={users[1]?.id}>
             <img
               id={users[1]?.id}
               src={users[1]?.image}
@@ -70,20 +70,20 @@ export default function TopRank() {
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
-            fontSize: "35px",
+            flexDirection: "column",
             fontWeight: "bold",
-
             minHeight: 100,
             color: "var(--gray-700)",
             backgroundColor: "var(--yellow-1)",
           }}
         >
-          {users[1]?.challenges}
+          <p style={{ fontSize: "30px" }}> {users[1]?.userLevel}</p>
+          <p className="text-sm">Level</p>
         </Box>
       </Box>
       <Box sx={{ width: 80 }}>
         <p style={{ textAlign: "center", padding: 0.5 }}>
-          <Button onClick={userInfo} sx={{ color: "white" }}>
+          <Button onClick={userInfo} sx={{ color: "white" }} id={users[0]?.id}>
             <img
               id={users[0]?.id}
               src={users[0]?.image}
@@ -100,21 +100,22 @@ export default function TopRank() {
           sx={{
             display: "flex",
             justifyContent: "center",
+            flexDirection: "column",
             alignItems: "center",
-            fontSize: "35px",
             fontWeight: "bold",
             minHeight: 150,
             color: "var(--gray-700)",
             backgroundColor: "var(--yellow-1)",
           }}
         >
-          {users[0]?.challenges}
-          {/* {console.log("users[2]?.challenges", users[2].challenges)} */}
+          <p style={{ fontSize: "30px" }}> {users[0]?.userLevel}</p>
+
+          <p className="text-sm">Level</p>
         </Box>
       </Box>
       <Box sx={{ width: 80 }}>
         <p style={{ textAlign: "center", padding: 0.5 }}>
-          <Button onClick={userInfo} sx={{ color: "white" }}>
+          <Button onClick={userInfo} sx={{ color: "white" }} id={users[2]?.id}>
             <img
               id={users[2]?.id}
               src={users[2]?.image}
@@ -132,14 +133,15 @@ export default function TopRank() {
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
-            fontSize: "35px",
+            flexDirection: "column",
             fontWeight: "bold",
             minHeight: 50,
             color: "var(--gray-700)",
             backgroundColor: "var(--yellow-1)",
           }}
         >
-          {users[2]?.challenges}
+          <p style={{ fontSize: "30px" }}> {users[2]?.userLevel}</p>
+          <p className="text-sm">Level</p>
         </Box>
       </Box>
     </Box>

@@ -11,7 +11,8 @@ const Dashboard = () => {
   const matches = useMediaQuery("(min-width:900px)");
   const [users, setUsers] = useState<any[]>([]);
 
-  const series = [{ name: "series1", data: [31, 120, 10, 28, 56, 19, 45] }];
+  const series = [{ name: "series1", data: [31, 77, 10, 28, 56, 19, 45] }];
+  const courseStudy = [{ name: "series1", data: [31, 45, 57, 33, 56, 77, 85] }];
   const userGrowth = [{ name: "series1", data: [10, 23, 25, 42, 56, 69, 120] }];
   const weeChallenge = [
     { name: "series1", data: [14, 18, 23, 25, 15, 20, 32] },
@@ -30,7 +31,7 @@ const Dashboard = () => {
             <DefaultChart title="User growth" series={userGrowth} />
           </Grid>
           <Grid xs={12} sm={12} md={6}>
-            <DefaultChart title="Course study hours" series={series} />
+            <DefaultChart title="Course study hours" series={courseStudy} />
           </Grid>
           <Grid xs={12} sm={12} md={6}>
             <DefaultChart title="Submitted challenges" series={series} />
@@ -42,7 +43,7 @@ const Dashboard = () => {
           <Grid xs={12} sm={12} md={6}>
             <BoxContent title="Top 3 users 🏆">
               <p style={{ marginLeft: 20, marginBottom: 20 }}>
-                Users with most submitted challenges:
+                Users with most experience in our platform
               </p>
               <TopRank />
             </BoxContent>

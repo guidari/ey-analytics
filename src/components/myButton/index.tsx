@@ -21,9 +21,10 @@ export default function MyButton({ title, link, ...rest }: any) {
           opacity: 0.8,
         },
       }}
+      id={title}
       {...rest}
     >
-      <a href={link} target="_blank">
+      <a href={link} target="_blank" id={title}>
         {title}
       </a>
     </Button>
