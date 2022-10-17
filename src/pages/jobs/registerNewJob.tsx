@@ -40,6 +40,8 @@ export default function RegisterNewJob() {
     updateDoc(doc(db, `jobs/${docRef.id}`), {
       id: docRef.id,
     });
+
+    alert(`The job was registered with the ID: ${docRef.id}`);
   };
 
   const createUserSkill = (e: any) => {
