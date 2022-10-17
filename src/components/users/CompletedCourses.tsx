@@ -70,7 +70,7 @@ export default function CompletedCourses({ id }: any) {
     };
 
     getUser();
-  }, [id]);
+  }, []);
 
   // console.log("completedCourses", completedCourses);
 
