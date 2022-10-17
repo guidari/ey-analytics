@@ -24,6 +24,8 @@ export default function CompletedCourses({ id }: any) {
   //   return data;
   // };
 
+  console.log("id", id);
+
   useEffect(() => {
     const getUser = async () => {
       try {
@@ -68,7 +70,7 @@ export default function CompletedCourses({ id }: any) {
     };
 
     getUser();
-  }, []);
+  }, [id]);
 
   // console.log("completedCourses", completedCourses);
 
